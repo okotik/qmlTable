@@ -66,9 +66,10 @@ ApplicationWindow
             model: table.model.columnCount()
             SortableColumnHeading
             {
-                width: Math.min(600, table.model.columnWidth(index))
+                initialWidth: Math.min(600, table.model.columnWidth(index))
                 height: parent.height
                 text: table.model.headerData(index, Qt.Horizontal)
+                initialSortOrder: table.model.initialSortOrder(index)
                 onSorting:
                 {
                     for(var i = 0; i < peter.model; ++i)
@@ -92,6 +93,7 @@ ApplicationWindow
         anchors.topMargin: header.height
         columnSpacing: 4
         rowSpacing: 4
+
         model: SortFilterProcessModel{filterText: tfFilter.text}
         Timer
         {
@@ -100,7 +102,7 @@ ApplicationWindow
             running: cbUpdate.checked
             onTriggered: table.model.processModel.update()
         }
-        columnWidthProvider: function (column) {return Math.min(600, model.columnWidth(column))}
+        columnWidthProvider: function (column) {return peter.itemAt(column).width}
         delegate: DelegateChooser
         {
             role: "type"
