@@ -9,7 +9,7 @@ class SortFilterProcessModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(ProcessModel *processModel READ processModel CONSTANT)
-    Q_PROPERTY(QString filterText READ filterText WRITE setFilterText NOTIFY filterTextChanged)
+    Q_PROPERTY(QString filterText READ getFilterText WRITE setFilterText NOTIFY filterTextChanged)
     Q_CLASSINFO("DefaultProperty", "data")
 
 public:
@@ -28,7 +28,7 @@ public:
     //бере значення індексу, які відображаються в таблиці і повертає оригінальні значення індексу які закладені в моделі
     QModelIndex mapToSource(const QModelIndex &proxyIndex) const override;
 
-    QString filterText() const;
+    QString getFilterText() const;
     void setFilterText(const QString &newFilterText);
 
 signals:

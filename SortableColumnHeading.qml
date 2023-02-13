@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick
 
 Rectangle
 {
@@ -43,6 +43,14 @@ Rectangle
         x: root.initialWidth - 6
         width: 12
         height: parent.height + 10
+
+        HoverHandler
+        {
+                id: control
+                //acceptedModifiers: Qt.ControlModifier
+                cursorShape: Qt.SplitHCursor
+        }
+
         DragHandler
         {
             yAxis.enabled: false
