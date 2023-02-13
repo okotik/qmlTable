@@ -71,7 +71,7 @@ QModelIndex SortFilterProcessModel::mapToSource(const QModelIndex &proxyIndex) c
     return m_processModel.index(rowIndex.row(), col);
 }
 
-QString SortFilterProcessModel::filterText() const
+QString SortFilterProcessModel::getFilterText() const
 {
     return m_filterText;
 }
@@ -81,6 +81,7 @@ void SortFilterProcessModel::setFilterText(const QString &newFilterText)
     if(m_filterText == newFilterText)
         return;
     m_filterText = newFilterText;
+    setFilterCaseSensitivity(Qt::CaseInsensitive);
     setFilterRegularExpression(m_filterText);
     emit filterTextChanged(m_filterText);
 }
