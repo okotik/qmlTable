@@ -83,5 +83,6 @@ void SortFilterProcessModel::setFilterText(const QString &newFilterText)
     m_filterText = newFilterText;
     setFilterCaseSensitivity(Qt::CaseInsensitive);
     setFilterRegularExpression(m_filterText);
+    m_filterText =  filterRegularExpression().pattern();
     emit filterTextChanged(m_filterText);
 }
